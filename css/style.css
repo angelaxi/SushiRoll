@@ -1,0 +1,53 @@
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+body {
+	background-color: #d4ebf2;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding:0px;
+}
+
+h1 {
+	font-family: 'League-Bold' , sans-serif;
+	color: 	#99ace0;
+	font-style: normal;
+	font-weight: 400;
+    font-size: 15vh;
+    letter-spacing: 8px;
+    text-align: center;
+    margin: 0%;
+    padding: 100px;
+}
+
+h2 {
+	font-family: 'League-Bold' , sans-serif;
+	color: 	#99ace0;
+	font-style: normal;
+	font-weight: 400;
+    font-size: 5vh;
+    letter-spacing: 5px;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 0px;
+}
+
+#TitleHeader {
+    position: relative;
+    background: #97d8e7; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left top, #97d8e7, #fff5e7); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, #97d8e7, #fff5e7); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #97d8e7, #fff5e7); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, #97d8e7, #fff5e7); /* Standard syntax */
+    width: 100%;
+}
+
+.headerStyle {
+    height: 100vh;
+} 
+
+.fillheight {
+    height:100%;
+}
