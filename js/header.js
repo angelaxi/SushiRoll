@@ -7,9 +7,13 @@ var header;
 var renderer;
 var pickingTexture;
 var mainmenu_sprite;
+var geometry;
+var cube;
+var pivot;
+var block;
 
 init();
-// animate();
+animate();
 
 function init() {
   pickingTexture = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight );
@@ -23,32 +27,32 @@ function init() {
   renderer.setSize(WIDTH, HEIGHT);
   container.appendChild(renderer.domElement);
 
-  camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, 20000);
-  camera.position.set(0, 0, 10);
-  // camera_y = new THREE.Object3D();
-  // camera_y.position.set(0, 0, 0);
-  // camera_piv = new THREE.Object3D();
-  // camera_piv.position.set(1, 0, 0);
-  // camera_y.rotateY(0.7);
-  // camera_y.add(camera_piv);
-  // camera_piv.add( camera );
-  // camera_piv.rotateX(-0.2);
-  // camera_y.position.set(0, 0, 0);
-  // camera.lookAt(camera_y.position);
-
-  // var mainMenuMap = new THREE.TextureLoader().load( "textures/ui_mainmenu.png" );
-  // var mainMenuMat = new THREE.SpriteMaterial( { map: mainMenuMap, color: 0xffffff } );
-  // mainMenuMat.depthTest = false;
-  // mainmenu_sprite = new THREE.Sprite( mainMenuMat );
-  // mainmenu_sprite.position.set(0, 0, -1);
-  // mainmenu_sprite.scale.set(1, 1, 1);
-  // camera.add(mainmenu_sprite);
+  // camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, 20000);
+  // camera.position.set(0, 0, 10);
+  camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 1000);
+  camera.position.set(4, 5, 10);
+  camera.lookAt(0, 0, 0)
 
   scene = new THREE.Scene();
 
-  var currPos = [new THREE.Vector3(-2, -2, 0)];
+  var currPos = [new THREE.Vector3(-2, 0, 0)];
   var board = new Board("vertical", currPos, scene);
-  board.createBoard(10)
+  board.createBoard(0)
+
+  block = new Block(scene, currPos);
+
+  // geometry = new THREE.BoxGeometry(1, 1, 2);
+  // var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+  // cube = new THREE.Mesh( geometry, material );
+  // cube.rotation.set(2, 0, 0.4)
+  // geometry.translate(-2, 0, -0.4);
+
+  // var bbox = new THREE.Box3().setFromObject(cube);
+  // cube.position.set(bbox.min.x, bbox.max.y, 0);
+  // pivot = new THREE.Group();
+  // pivot.add(cube);
+  // pivot.position.set(-bbox.min.x, 0.5-bbox.max.y, 0.5);
+  // scene.add(pivot);
 
   function render() {
     requestAnimationFrame( render );
@@ -60,12 +64,17 @@ function init() {
 
 function animate() {
   requestAnimationFrame(animate);
+
   renderer.render(scene, camera);
-};
+}
 
 document.addEventListener('keydown', function(event) {
   if (event.key == " ") {
-    header = document.getElementById("header");
-    header.style.visibility = "hidden";
+    // console.log(tile.rotation.z)
+  }
+
+  if (event.key == 'ArrowRight') {
+    console.log("right arrow pressed")
+    block.rotate("right")
   }
 });

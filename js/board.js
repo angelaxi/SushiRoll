@@ -4,6 +4,7 @@ class Board {
         this.scene = scene;
         this.currPos = currPos
         this.offset = 0.01;
+        this.rotationX = 1.5708;
         this.material = new THREE.MeshBasicMaterial({color: 0x003b00, side: THREE.DoubleSide});
         this.directions = ["forward", "right", "left"];
         this.vectors = new Map();
@@ -18,9 +19,10 @@ class Board {
     createBoard(numTiles) {
         // generate starting tile
         var startMaterial = new THREE.MeshBasicMaterial({color: 0xffffff, side: THREE.DoubleSide});
-        var geometry = new THREE.PlaneGeometry(1, 1);
+        var geometry = new THREE.PlaneGeometry(1.5, 1.5);
         var tile = new THREE.Mesh(geometry, startMaterial);
-        tile.rotation.set(2, 0, 0.2);
+        // tile.rotation.set(2, 0, 0.4);
+        tile.rotation.set(this.rotationX, 0, 0);
         geometry.translate(this.currPos[0].x, this.currPos[0].y, this.currPos[0].z);
         scene.add(tile);
         this.tiles.push(tile);
@@ -75,19 +77,15 @@ class Board {
         console.log("generateTile12");
         var geometry1 = new THREE.PlaneGeometry(1, 1);
         var tile1 = new THREE.Mesh(geometry1, this.material);
-        tile1.rotation.set(2, 0, 0.2);
+        tile.rotation.set(this.rotationX, 0, 0);
         var p1 = this.newPosition(direction, this.currPos[0]);
         geometry1.translate(p1.x, p1.y, p1.z);
 
         var geometry2 = new THREE.PlaneGeometry(1, 1);
         var tile2 = new THREE.Mesh(geometry2, this.material);
-        tile2.rotation.set(2, 0, 0.2);
+        tile2.rotation.set(this.rotationX, 0, 0);
         var p2 = this.newPosition(direction, p1);
         geometry2.translate(p2.x, p2.y, p2.z);
-
-        console.log(p1);
-        console.log(p2);
-        console.log(!this.containsPosition(p1) && !this.containsPosition(p2))
 
         if (!this.containsPosition(p1) && !this.containsPosition(p2)) {
             this.scene.add(tile1);
@@ -112,12 +110,9 @@ class Board {
         console.log("generateTile21");
         var geometry1 = new THREE.PlaneGeometry(1, 1);
         var tile1 = new THREE.Mesh(geometry1, this.material);
-        tile1.rotation.set(2, 0, 0.2);
+        tile1.rotation.set(this.rotationX, 0, 0);
         var p1 = this.newPosition(direction, this.currPos[1]);
         geometry1.translate(p1.x, p1.y, p1.z);
-
-        console.log(p1);
-        console.log(!this.containsPosition(p1));
 
         if (!this.containsPosition(p1)) {
             this.scene.add(tile1);
@@ -139,19 +134,15 @@ class Board {
         console.log("generateTile22");
         var geometry1 = new THREE.PlaneGeometry(1, 1);
         var tile1 = new THREE.Mesh(geometry1, this.material);
-        tile1.rotation.set(2, 0, 0.2);
+        tile1.rotation.set(this.rotationX, 0, 0);
         var p1 = this.newPosition(direction, this.currPos[0]);
         geometry1.translate(p1.x, p1.y, p1.z);
 
         var geometry2 = new THREE.PlaneGeometry(1, 1);
         var tile2 = new THREE.Mesh(geometry2, this.material);
-        tile2.rotation.set(2, 0, 0.2);
+        tile2.rotation.set(this.rotationX, 0, 0);
         var p2 = this.newPosition(direction, this.currPos[1]);
         geometry2.translate(p2.x, p2.y, p2.z);
-
-        console.log(p1);
-        console.log(p2);
-        console.log(!this.containsPosition(p1) && !this.containsPosition(p2))
 
         if (!this.containsPosition(p1) && !this.containsPosition(p2)) {
             this.scene.add(tile1);
