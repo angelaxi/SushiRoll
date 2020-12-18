@@ -26,13 +26,13 @@ class Block {
         // this.material = new THREE.MeshBasicMaterial( { color: 0xf7f7f2, envMap: cubeTexture } )
 
 
-        // const loader = new THREE.TextureLoader();
+        const loader = new THREE.TextureLoader();
 
-        // this.material = new THREE.MeshBasicMaterial({
-        //     map: loader.load('textures/rice.jpg'),
-        // });
+        this.material = new THREE.MeshBasicMaterial({
+            map: loader.load('textures/rice.jpg')
+        });
 
-        this.material = new THREE.MeshBasicMaterial( { color: 0xf7f7f2 } )
+        // this.material = new THREE.MeshBasicMaterial( { color: 0xf7f7f2 } )
         this.block = new THREE.Mesh( this.geometry, this.material )
         sushi = this.block
         this.scene.add(this.block)
