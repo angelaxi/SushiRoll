@@ -8,7 +8,7 @@ class Board {
         const loader = new THREE.TextureLoader();
 
         this.material = new THREE.MeshBasicMaterial({
-            map: loader.load('textures/seaweed.jpg'),
+            map: loader.load('textures/seaweed.jpg'), side: THREE.DoubleSide
         });
         // this.material = new THREE.MeshBasicMaterial({color: 0x003b00, side: THREE.DoubleSide})
         this.directions = ["forward", "backward", "right", "left"]
