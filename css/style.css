@@ -30,8 +30,32 @@ h2 {
     font-size: 5vh;
     letter-spacing: 5px;
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 0px;
+    margin: 0%;
+    padding-top: 50px;
+}
+
+ h3 {
+	font-family: 'League-Bold' , sans-serif;
+	color: 	#99ace0;
+	font-style: normal;
+	font-weight: 400;
+    font-size: 5vh;
+    letter-spacing: 5px;
+    text-align: center;
+    margin: 0%;
+    padding-top: 70px;
+}
+
+ h5 {
+	font-family: 'League-Bold' , sans-serif;
+	color: 	#99ace0;
+	font-style: normal;
+	font-weight: 400;
+    font-size: 3vh;
+    letter-spacing: 5px;
+    text-align: center;
+    margin: 0%;
+    padding-top: 30px;
 }
 
 #TitleHeader {

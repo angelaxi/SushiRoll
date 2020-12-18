@@ -13,12 +13,15 @@ var board
 var block
 
 init()
-animate()
 
 function init() {
   pickingTexture = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight )
 	pickingTexture.texture.minFilter = THREE.LinearFilter
   container = document.getElementById("TitleHeader")
+}
+
+function startGame() {
+  container.innerHTML = ""
   canvas = document.createElement("canvas")
   var WIDTH = container.offsetWidth
   var HEIGHT = container.offsetHeight
@@ -63,16 +66,63 @@ function animate() {
   requestAnimationFrame(animate)
   TWEEN.update()
 
-  // pivot.rotation.z += 0.1
   renderer.render(scene, camera)
+}
+
+function instructions() {
+  container.innerHTML = ""
+  var h3_1 = document.createElement("H3")
+  var h5_1 = document.createElement("H5")
+  var h5_2 = document.createElement("H5")
+  howToPlay = "How to Play:" 
+  howToPlay1 = "Use the arrow keys to flip the sushi rice on the squares of seaweed."
+  howToPlay2 = "Flip until there's no more seaweed left."
+  var text1 = document.createTextNode(howToPlay)
+  var text2 = document.createTextNode(howToPlay1)
+  var text3 = document.createTextNode(howToPlay2)
+  h3_1.appendChild(text1)
+  h5_1.appendChild(text2)
+  h5_2.appendChild(text3)
+
+  var h3_2 = document.createElement("H3")
+  var h5_3 = document.createElement("H5")
+  var h5_4 = document.createElement("H5")
+  var h5_5 = document.createElement("H5")
+  cameraControls = "Camera controls:"
+  cameraControls1 = "Scroll to zoom"
+  cameraControls2 = "Left click and drag to rotate"
+  cameraControls3 = "Right click and drag to move the board"
+  var text4 = document.createTextNode(cameraControls)
+  var text5 = document.createTextNode(cameraControls1)
+  var text6 = document.createTextNode(cameraControls2)
+  var text7 = document.createTextNode(cameraControls3)
+  h3_2.appendChild(text4)
+  h5_3.appendChild(text5)
+  h5_4.appendChild(text6)
+  h5_5.appendChild(text7)
+
+  var h3_3 = document.createElement("H3")
+  var text8 = document.createTextNode("Press Space to Start")
+  h3_3.appendChild(text8)
+
+  container.appendChild(h3_1)
+  container.appendChild(h5_1)
+  container.appendChild(h5_2)
+  container.appendChild(h3_2)
+  container.appendChild(h5_3)
+  container.appendChild(h5_4)
+  container.appendChild(h5_5)
+  container.appendChild(h3_3)
 }
 
 document.addEventListener('keydown', function(event) {
   if (event.key == " ") {
-    // console.log(tile.rotation.z)
-  }
-
-  if (event.key == 'ArrowRight') {
+    console.log("space pressed")
+    startGame()
+  } else if (event.key == "i") {
+    console.log("i key pressed")
+    instructions()
+  } else if (event.key == 'ArrowRight') {
     // console.log("right arrow pressed")
     block.rotate("right")
   } else if (event.key == 'ArrowLeft') {
