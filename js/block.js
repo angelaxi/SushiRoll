@@ -1,52 +1,59 @@
 var sushi
 
 class Block {
-    constructor(scene, currPos, orientation) {
+    constructor(scene, currPos, orientation, board) {
         this.orientation = orientation
         this.scene = scene
         this.currPos = currPos
+        this.board = board
         // this.geometry = new THREE.BoxGeometry(1, 2, 1)
-        this.geometry = createBoxWithRoundedEdges(1, 2, 1, .25, 3)
+        this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .25, 3)
         this.geometry.computeVertexNormals()
 
-        var loader = new THREE.CubeTextureLoader();
-        loader.setCrossOrigin( "" );
-        loader.setPath( 'https://threejs.org/examples/textures/cube/pisa/' );
+        // var loader = new THREE.CubeTextureLoader();
+        // loader.setCrossOrigin( "" );
+        // loader.setPath( 'https://threejs.org/examples/textures/cube/pisa/' );
 
-        var cubeTexture = loader.load( [
-        'px.png', 'nx.png',
-        'py.png', 'ny.png',
-        'pz.png', 'nz.png'
-        ] );
+        // var cubeTexture = loader.load( [
+        // 'px.png', 'nx.png',
+        // 'py.png', 'ny.png',
+        // 'pz.png', 'nz.png'
+        // ] );
         
-        this.material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: cubeTexture } );
+        // this.material = new THREE.MeshBasicMaterial( { color: 0xf7f7f2, envMap: cubeTexture } )
 
-        // var textureMap = new THREE.CubeTextureLoader().load("textures/rice.jpg")
-        // this.material = new THREE.MeshBasicMaterial( { color: 0xffffff, map: textureMap } );
+        // const loader = new THREE.TextureLoader();
 
-        // this.material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } )
+        // this.material = new THREE.MeshBasicMaterial({
+        //     map: loader.load('textures/rice.jpg'),
+        // });
+
+        this.material = new THREE.MeshBasicMaterial( { color: 0xf7f7f2 } )
         this.block = new THREE.Mesh( this.geometry, this.material )
-        // this.geometry.translate(currPos[0].x, currPos[0].y + 1, currPos[0].z)
         sushi = this.block
-        // this.block.rotation.set(2, 0, 0.4)
-        // this.geometry.translate(-2, 0, -0.4)
-        // this.geometry.translate(this.currPos[0].x, this.currPos[0].y, this.currPos[0].z)
-        // this.bbox = new THREE.Box3().setFromObject(this.block)
-        // this.block.position.set(this.bbox.min.x, this.bbox.max.y, 0)
-        // this.pivot = new THREE.Object3D()
-        // this.pivot.add(this.block)
-        // this.pivot.position.set(-this.bbox.min.x, 0.5 - this.bbox.max.y, 0.5)
-        // this.scene.add(this.pivot)
         this.scene.add(this.block)
-        console.log("block position")
-        console.log(this.block.position)
+        // console.log("block position")
+        // console.log(this.block.position)
     }
 
-    // animate() {
-    //     requestAnimationFrame(animate)
-    //     this.block.rotation.z -= 0.1
-    //     renderer.render(scene, camera)
-    // }
+    getTiles(pos, orientation) {
+        var tiles = []
+        console.log(orientation)
+        if (orientation == "vertical") {
+            tiles.push(pos)
+        } else if (orientation == "horizontalX") {
+            var tile1 = {x: pos.x + 0.5, y: pos.y, z: pos.z}
+            var tile2 = {x: pos.x - 0.5, y: pos.y, z: pos.z}
+            tiles.push(tile1)
+            tiles.push(tile2)
+        } else if (orientation == "horizontalZ") {
+            var tile1 = {x: pos.x, y: pos.y, z: pos.z + 0.5}
+            var tile2 = {x: pos.x, y: pos.y, z: pos.z - 0.5}
+            tiles.push(tile1)
+            tiles.push(tile2)
+        }
+        return tiles
+    }
 
     rotate(direction) {
         var position = {x : this.block.position.x, y: this.block.position.y, z: this.block.position.z}
@@ -55,8 +62,9 @@ class Block {
         var rotationEnd = {x : this.block.rotation.x, y: this.block.rotation.y, z: this.block.rotation.z}
         var scale = {x: 1, y: 1, z: 1}
         var rot = 1.5708
-
-        console.log(this.orientation)
+        var landingTiles = []
+        var prevOrientation = this.orientation
+        var prevPosition = this.block.position.clone()
 
         if (direction == "right") {
             rotationEnd.z -= rot
@@ -148,29 +156,84 @@ class Block {
             }
         }
 
-        console.log("target rotation")
-        console.log(rotationEnd)
-        console.log("scale")
-        console.log(scale)
+        // check if move if valid
+        landingTiles = this.getTiles(positionEnd, this.orientation)
+        // console.log("landing tiles")
+        // console.log(landingTiles)
+        var validMove = this.board.containsTile(landingTiles[0])
+        if (landingTiles.length > 1) {
+            validMove = validMove && this.board.containsTile(landingTiles[1])
+        }
+        
+        // console.log(validMove)
 
-        var tweenPos = new TWEEN.Tween(position).to(positionEnd, 300);
-        tweenPos.easing(TWEEN.Easing.Quadratic.Out);
-        tweenPos.start();
-        tweenPos.onUpdate(function(){
-            sushi.position.set(position.x, position.y, position.z);
-        });
+        if (validMove) {
+            var tweenPos = new TWEEN.Tween(position).to(positionEnd, 300);
+            tweenPos.easing(TWEEN.Easing.Quadratic.Out);
+            tweenPos.start();
+            tweenPos.onUpdate(function(){
+                sushi.position.set(position.x, position.y, position.z);
+            });
 
-        var tweenRot = new TWEEN.Tween(rotation).to(rotationEnd, 300);
-        tweenRot.easing(TWEEN.Easing.Quadratic.Out);
-        tweenRot.start();
-        tweenRot.onUpdate(function(){
-            sushi.rotation.set(rotation.x, rotation.y, rotation.z);
-        });
-        tweenRot.onComplete(function(){ 
-            // reset rotation
-            sushi.scale.set(scale.x, scale.y, scale.z)
-            sushi.rotation.set(0, 0, 0)
-        });
+            var tweenRot = new TWEEN.Tween(rotation).to(rotationEnd, 300);
+            tweenRot.easing(TWEEN.Easing.Quadratic.Out);
+            tweenRot.start();
+            tweenRot.onUpdate(function(){
+                sushi.rotation.set(rotation.x, rotation.y, rotation.z);
+            });
+            tweenRot.onComplete(function(){ 
+                // reset rotation
+                sushi.position.set(positionEnd.x, positionEnd.y, positionEnd.z)
+                sushi.scale.set(scale.x, scale.y, scale.z)
+                sushi.rotation.set(0, 0, 0)
+            });
+
+            var object = new THREE.Object3D()
+            var worldPosition = object.localToWorld(prevPosition)
+            var tilesToRemove = this.getTiles(worldPosition, prevOrientation)
+            console.log("tiles to remove:")
+            console.log(tilesToRemove)
+            this.board.removeTiles(tilesToRemove)
+        } else {
+            // bounce back if move is not valid
+            var tweenPos = new TWEEN.Tween(position).to(positionEnd, 300);
+            tweenPos.repeat(1)
+            tweenPos.yoyo(true)
+            tweenPos.start();
+            tweenPos.onUpdate(function(){
+                sushi.position.set(position.x, position.y, position.z);
+            });
+
+            var tweenRot = new TWEEN.Tween(rotation).to(rotationEnd, 300);
+            tweenRot.repeat(1)
+            tweenRot.yoyo(true)
+            tweenRot.start();
+            tweenRot.onUpdate(function(){
+                sushi.rotation.set(rotation.x, rotation.y, rotation.z);
+            });
+
+            this.orientation = prevOrientation
+        }
+
+        // var tweenPos = new TWEEN.Tween(position).to(positionEnd, 300);
+        // tweenPos.easing(TWEEN.Easing.Quadratic.Out);
+        // tweenPos.start();
+        // tweenPos.onUpdate(function(){
+        //     sushi.position.set(position.x, position.y, position.z);
+        // });
+
+        // var tweenRot = new TWEEN.Tween(rotation).to(rotationEnd, 300);
+        // tweenRot.easing(TWEEN.Easing.Quadratic.Out);
+        // tweenRot.start();
+        // tweenRot.onUpdate(function(){
+        //     sushi.rotation.set(rotation.x, rotation.y, rotation.z);
+        // });
+        // tweenRot.onComplete(function(){ 
+        //     // reset rotation
+        //     sushi.position.set(positionEnd.x, positionEnd.y, positionEnd.z)
+        //     sushi.scale.set(scale.x, scale.y, scale.z)
+        //     sushi.rotation.set(0, 0, 0)
+        // });
     }
 
     createBoxWithRoundedEdges( width, height, depth, radius0, smoothness ) {

@@ -36,11 +36,13 @@ h2 {
 
 #TitleHeader {
     position: relative;
+    /* background-image: url("../textures/background.jpg");
+    background-size: cover; */
     background: #97d8e7; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left top, #97d8e7, #fff5e7); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom right, #97d8e7, #fff5e7); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom right, #97d8e7, #fff5e7); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to bottom right, #97d8e7, #fff5e7); /* Standard syntax */
+    background: -webkit-linear-gradient(left top, #ffdae0, #daf3ff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, #ffdae0, #daf3ff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #ffdae0, #daf3ff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, #ffdae0, #daf3ff); /* Standard syntax */
     width: 100%;
 }
 
