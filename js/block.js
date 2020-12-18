@@ -7,6 +7,9 @@ class Block {
         this.currPos = currPos
         this.board = board
         // this.geometry = new THREE.BoxGeometry(1, 2, 1)
+        // let subdivisionModifier = new THREE.SubdivisionModifier(5)
+        // subdivisionModifier.modify(this.geometry)
+
         this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .25, 3)
         this.geometry.computeVertexNormals()
 
@@ -22,6 +25,7 @@ class Block {
         
         // this.material = new THREE.MeshBasicMaterial( { color: 0xf7f7f2, envMap: cubeTexture } )
 
+
         // const loader = new THREE.TextureLoader();
 
         // this.material = new THREE.MeshBasicMaterial({
@@ -32,8 +36,6 @@ class Block {
         this.block = new THREE.Mesh( this.geometry, this.material )
         sushi = this.block
         this.scene.add(this.block)
-        // console.log("block position")
-        // console.log(this.block.position)
     }
 
     getTiles(pos, orientation) {

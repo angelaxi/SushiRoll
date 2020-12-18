@@ -5,7 +5,12 @@ class Board {
         this.currPos = currPos
         this.offset = 0.01
         this.rotationX = 1.5708
-        this.material = new THREE.MeshBasicMaterial({color: 0x003b00, side: THREE.DoubleSide})
+        const loader = new THREE.TextureLoader();
+
+        this.material = new THREE.MeshBasicMaterial({
+            map: loader.load('textures/seaweed.jpg'),
+        });
+        // this.material = new THREE.MeshBasicMaterial({color: 0x003b00, side: THREE.DoubleSide})
         this.directions = ["forward", "backward", "right", "left"]
         this.vectors = new Map()
         this.vectors["forward"] = new THREE.Vector3(1 + this.offset, 0, 0)
@@ -36,11 +41,10 @@ class Board {
 
             // choose direction
             var direction = this.directions[Math.floor(Math.random() * this.directions.length)]
+
             if (i == numTiles - 1) {
                 this.material = startMaterial
             }
-
-            console.log(direction)
 
             var tileCreated = false;
 
@@ -75,7 +79,6 @@ class Board {
             }
 
             if (!tileCreated) {
-                console.log("tile not created")
                 i--
             }
         }
@@ -180,18 +183,21 @@ class Board {
       }
       
       removeTiles(tiles) {
-        console.log("in removeTiles function")
         for (var i = 0; i < this.tiles.length; i++) {
           var t = this.tiles[i]
           if (t.blockPositionEquals(tiles[0])) {
             t.remove()
-            console.log("1 tile removed")
-            console.log(t)
+            this.tiles.splice(i, 1)
+            i--
+            // console.log("1 tile removed")
+            // console.log(t)
           }
           if (tiles.length > 1 && t.blockPositionEquals(tiles[1])) {
             t.remove()
-            console.log("2 tiles removed")
-            console.log(t)
+            this.tiles.splice(i, 1)
+            i--
+            // console.log("2 tiles removed")
+            // console.log(t)
           }
         }
       }
