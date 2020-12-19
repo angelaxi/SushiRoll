@@ -6,10 +6,10 @@ class Board {
         this.offset = 0.01
         this.rotationX = 1.5708
         const loader = new THREE.TextureLoader();
-
         this.material = new THREE.MeshBasicMaterial({
             map: loader.load('textures/seaweed.jpg'), side: THREE.DoubleSide
         });
+        // comment out before committing
         // this.material = new THREE.MeshBasicMaterial({color: 0x003b00, side: THREE.DoubleSide})
         this.directions = ["forward", "backward", "right", "left"]
         this.vectors = new Map()
@@ -23,7 +23,10 @@ class Board {
 
     createBoard(numTiles) {
         // generate starting tile
-        var startMaterial = new THREE.MeshBasicMaterial({color: 0xe0ccb1, side: THREE.DoubleSide})
+        // var startMaterial = new THREE.MeshBasicMaterial({color: 0xe0ccb1, side: THREE.DoubleSide})
+        var startMaterial = new THREE.MeshBasicMaterial({
+            map: loader.load('textures/bamboo_mat.jpg'), side: THREE.DoubleSide
+        });
         this.numTiles++
         var tile = new Tile(this.scene, this.currPos[0], startMaterial, "tile" + this.numTiles)
         this.tiles.push(tile)
