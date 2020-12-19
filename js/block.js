@@ -23,12 +23,20 @@ class Block {
         // ] );
         // this.material = new THREE.MeshBasicMaterial( { color: 0xf7f7f2, envMap: cubeTexture } )
 
-
-        const loader = new THREE.TextureLoader();
-        this.material = new THREE.MeshBasicMaterial({
-            color: 0xf7f7f2,
-            map: loader.load('textures/rice.jpg')
+        THREE.crossOrigin = "";
+        var bmap =  THREE.ImageUtils.loadTexture("textures/rice_texture", {}, function(){});
+        THREE.MeshPhongMaterial({
+            color      :  0xf7f7f2,
+            bumpMap    :  bmap,
+            bumpScale  :  0.45,
         });
+
+
+        // const loader = new THREE.TextureLoader();
+        // this.material = new THREE.MeshBasicMaterial({
+        //     color: 0xf7f7f2,
+        //     map: loader.load('textures/rice.jpg')
+        // });
 
         // comment out before committing
         // this.material = new THREE.MeshBasicMaterial( { color: 0xf7f7f2 } )

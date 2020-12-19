@@ -23,10 +23,12 @@ class Board {
 
     createBoard(numTiles) {
         // generate starting tile
-        // var startMaterial = new THREE.MeshBasicMaterial({color: 0xe0ccb1, side: THREE.DoubleSide})
+        const loader = new THREE.TextureLoader();
         var startMaterial = new THREE.MeshBasicMaterial({
             map: loader.load('textures/bamboo_mat.jpg'), side: THREE.DoubleSide
         });
+        // comment out before committing
+        // startMaterial = new THREE.MeshBasicMaterial({color: 0xe0ccb1, side: THREE.DoubleSide})
         this.numTiles++
         var tile = new Tile(this.scene, this.currPos[0], startMaterial, "tile" + this.numTiles)
         this.tiles.push(tile)
