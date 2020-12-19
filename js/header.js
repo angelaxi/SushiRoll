@@ -40,7 +40,7 @@ function startGame() {
 
   var orbitControls = new THREE.OrbitControls(camera, canvas);
 
-  var light = new THREE.DirectionalLight(0xffffff, 1.5);
+  var light = new THREE.DirectionalLight(0xffffff, 0.7);
   light.position.setScalar(10);
   scene.add(light);
   scene.add(new THREE.AmbientLight(0xffffff, 0.5));
@@ -48,7 +48,7 @@ function startGame() {
   var startOrient = "vertical"
   var currPos = [new THREE.Vector3(0, 0, 1)]
   board = new Board(startOrient, currPos, scene, renderer)
-  board.createBoard(10)
+  board.createBoard(5)
   // console.log("tiles on board")
   // console.log(board.tiles)
 
@@ -115,6 +115,23 @@ function instructions() {
   container.appendChild(h3_3)
 }
 
+function winScreen() {
+  container.innerHTML = ""
+  var h3_1 = document.createElement("H3")
+  var h3_2 = document.createElement("H3")
+  var h3_3 = document.createElement("H3")
+  var img = document.createElement("img")
+  img.setAttribute("src", "textures/sushi.png")
+  var text1 = document.createTextNode("Congrats! You made a sushi!")
+  var text2 = document.createTextNode("Press Space for a New Game")
+  h3_1.appendChild(text1)
+  h3_2.appendChild(text2)
+  container.appendChild(h3_1)
+  container.appendChild(h3_2)
+  container.appendChild(h3_3)
+  container.appendChild(img)
+}
+
 document.addEventListener('keydown', function(event) {
   if (event.key == " ") {
     console.log("space pressed")
@@ -122,17 +139,23 @@ document.addEventListener('keydown', function(event) {
   } else if (event.key == "i") {
     console.log("i key pressed")
     instructions()
-  } else if (event.key == 'ArrowRight') {
-    // console.log("right arrow pressed")
-    block.rotate("right")
-  } else if (event.key == 'ArrowLeft') {
-    // console.log("left arrow pressed")
-    block.rotate("left")
-  } else if (event.key == 'ArrowDown') {
-    // console.log("down arrow pressed")
-    block.rotate("forward")
-  } else if (event.key == 'ArrowUp') {
-    // console.log("up arrow pressed")
-    block.rotate("backward")
+  } else {
+    if (event.key == 'ArrowRight') {
+      // console.log("right arrow pressed")
+      block.rotate("right")
+    } else if (event.key == 'ArrowLeft') {
+      // console.log("left arrow pressed")
+      block.rotate("left")
+    } else if (event.key == 'ArrowDown') {
+      // console.log("down arrow pressed")
+      block.rotate("forward")
+    } else if (event.key == 'ArrowUp') {
+      // console.log("up arrow pressed")
+      block.rotate("backward")
+    }
+
+    if (board.didWin()) {
+      winScreen()
+    }
   }
 })

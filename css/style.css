@@ -58,6 +58,13 @@ h2 {
     padding-top: 30px;
 }
 
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+
 #TitleHeader {
     position: relative;
     /* background-image: url("../textures/background.jpg");

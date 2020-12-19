@@ -13,14 +13,6 @@ class Tile {
 
     remove() {
         this.scene.remove(this.tile)
-
-        var numOfMeshes = 0;
-        this.scene.traverse( function( child ) {
-            if( child instanceof THREE.Mesh ) {
-                numOfMeshes++;
-            }
-        } );
-        console.log(numOfMeshes)
     }
 
     positionEquals(position) {

@@ -6,11 +6,11 @@ class Board {
         this.offset = 0.01
         this.rotationX = 1.5708
         const loader = new THREE.TextureLoader();
-        this.material = new THREE.MeshBasicMaterial({
+        this.material = new THREE.MeshLambertMaterial({
             map: loader.load('textures/seaweed.jpg'), side: THREE.DoubleSide
         });
         // comment out before committing
-        // this.material = new THREE.MeshBasicMaterial({color: 0x003b00, side: THREE.DoubleSide})
+        // this.material = new THREE.MeshLambertMaterial({color: 0x003b00, side: THREE.DoubleSide})
         this.directions = ["forward", "backward", "right", "left"]
         this.vectors = new Map()
         this.vectors["forward"] = new THREE.Vector3(1 + this.offset, 0, 0)
@@ -18,17 +18,19 @@ class Board {
         this.vectors["right"] =  new THREE.Vector3(0, 1 + this.offset, 0)
         this.vectors["left"] =  new THREE.Vector3(0, -1 - this.offset, 0)
         this.tiles = []
+        this.end = false
+        this.finalTiles = []
         this.numTiles = 0
     }
 
     createBoard(numTiles) {
         // generate starting tile
         const loader = new THREE.TextureLoader();
-        var startMaterial = new THREE.MeshBasicMaterial({
+        var startMaterial = new THREE.MeshLambertMaterial({
             map: loader.load('textures/bamboo_mat.jpg'), side: THREE.DoubleSide
         });
         // comment out before committing
-        // startMaterial = new THREE.MeshBasicMaterial({color: 0xe0ccb1, side: THREE.DoubleSide})
+        // startMaterial = new THREE.MeshLambertMaterial({color: 0xe0ccb1, side: THREE.DoubleSide})
         this.numTiles++
         var tile = new Tile(this.scene, this.currPos[0], startMaterial, "tile" + this.numTiles)
         this.tiles.push(tile)
@@ -49,6 +51,7 @@ class Board {
 
             if (i == numTiles - 1) {
                 this.material = startMaterial
+                this.end = true
             }
 
             var tileCreated = false;
@@ -110,6 +113,10 @@ class Board {
             this.tiles.push(tile1)
             this.tiles.push(tile2)
             this.currPos = [p1, p2]
+            if (this.end) {
+                this.finalTiles.push(tile1)
+                this.finalTiles.push(tile2)
+            }
             return true
         }
         return false
@@ -131,6 +138,9 @@ class Board {
             var tile1 = new Tile(this.scene, p1, this.material, "tile" + this.numTiles)
             this.tiles.push(tile1)
             this.currPos = [p1]
+            if (this.end) {
+                this.finalTiles.push(tile1)
+            }
             return true
         }
         return false
@@ -157,6 +167,10 @@ class Board {
             this.tiles.push(tile1)
             this.tiles.push(tile2)
             this.currPos = [p1, p2]
+            if (this.end) {
+                this.finalTiles.push(tile1)
+                this.finalTiles.push(tile2)
+            }
             return true
         }
         return false
@@ -205,5 +219,22 @@ class Board {
             // console.log(t)
           }
         }
+      }
+
+      didWin() {
+          var allRemoved = this.tiles.length < 3
+          if (this.currPos.length != this.finalTiles.length) {
+              return false
+          }
+
+          if (this.currPos.length == 1) {
+              return this.finalTiles[0].positionEquals(this.currPos[0]) && allRemoved
+          } else if (this.finalTiles[0].positionEquals(this.currPos[0])) {
+              return this.finalTiles[1].positionEquals(this.currPos[1]) && allRemoved
+          } else if (this.finalTiles[1].positionEquals(this.currPos[0])) {
+              return this.finalTiles[0].positionEquals(this.currPos[1]) && allRemoved
+          }
+
+          return false
       }
 }

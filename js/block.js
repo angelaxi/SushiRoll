@@ -23,13 +23,13 @@ class Block {
         // ] );
         // this.material = new THREE.MeshBasicMaterial( { color: 0xf7f7f2, envMap: cubeTexture } )
 
-        THREE.crossOrigin = "";
-        const loader = new THREE.TextureLoader();
-        this.material = new THREE.MeshPhongMaterial({
-            color      :  0xf7f7f2,
-            bumpMap    :  loader.load('textures/rice_texture.jpg'),
-            bumpScale  :  0.45,
-        });
+        // THREE.crossOrigin = "";
+        // const loader = new THREE.TextureLoader();
+        // this.material = new THREE.MeshPhongMaterial({
+        //     color      :  0xf7f7f2,
+        //     bumpMap    :  loader.load('textures/rice_texture.jpg'),
+        //     bumpScale  :  0.45,
+        // });
 
 
         // const loader = new THREE.TextureLoader();
@@ -39,7 +39,7 @@ class Block {
         // });
 
         // comment out before committing
-        // this.material = new THREE.MeshBasicMaterial( { color: 0xf7f7f2 } )
+        this.material = new THREE.MeshLambertMaterial( { color: 0xfcfcfc } )
         this.block = new THREE.Mesh( this.geometry, this.material )
         sushi = this.block
         this.scene.add(this.block)
@@ -47,7 +47,6 @@ class Block {
 
     getTiles(pos, orientation) {
         var tiles = []
-        console.log(orientation)
         if (orientation == "vertical") {
             tiles.push(pos)
         } else if (orientation == "horizontalX") {
