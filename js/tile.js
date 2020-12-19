@@ -15,6 +15,10 @@ class Tile {
         this.scene.remove(this.tile)
     }
 
+    add() {
+        this.scene.add(this.tile)
+    }
+
     positionEquals(position) {
         if (Math.floor(this.position.x) == Math.floor(position.x) 
             && Math.floor(this.position.y) == Math.floor(position.y)

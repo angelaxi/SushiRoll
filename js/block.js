@@ -3,7 +3,9 @@ var sushi
 class Block {
     constructor(scene, currPos, orientation, board) {
         this.orientation = orientation
+        this.origOrient = orientation
         this.scene = scene
+        this.origPos = currPos
         this.currPos = currPos
         this.board = board
         // this.geometry = new THREE.BoxGeometry(1, 2, 1)
@@ -43,6 +45,14 @@ class Block {
         this.block = new THREE.Mesh( this.geometry, this.material )
         sushi = this.block
         this.scene.add(this.block)
+    }
+
+    reset() {
+        sushi.position.set(0, 0, 0)
+        sushi.rotation.set(0, 0, 0)
+        sushi.scale.set(1, 1, 1)
+        this.currPos = this.origPos
+        this.orientation = this.origOrient
     }
 
     getTiles(pos, orientation) {

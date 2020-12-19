@@ -18,6 +18,7 @@ class Board {
         this.vectors["right"] =  new THREE.Vector3(0, 1 + this.offset, 0)
         this.vectors["left"] =  new THREE.Vector3(0, -1 - this.offset, 0)
         this.tiles = []
+        this.originalTiles = []
         this.end = false
         this.finalTiles = []
         this.numTiles = 0
@@ -90,6 +91,8 @@ class Board {
                 i--
             }
         }
+
+        this.originalTiles = [... this.tiles]
       }
 
       /**
@@ -236,5 +239,14 @@ class Board {
           }
 
           return false
+      }
+
+      reset() {
+          console.log("reset")
+          this.tiles = [... this.originalTiles]
+
+          for (var i = 0; i < this.tiles.length; i++) {
+              this.tiles[i].add()
+          }
       }
 }

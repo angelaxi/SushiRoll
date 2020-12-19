@@ -23,6 +23,18 @@ function init() {
 function startGame() {
   container.innerHTML = ""
   canvas = document.createElement("canvas")
+  var div = document.createElement("div")
+  div.className = "overlay"
+  var h4_1 = document.createElement("H4")
+  var h4_2 = document.createElement("H4")
+  var restart = document.createTextNode("R: Restart")
+  var newGame = document.createTextNode("Space: New Game")
+  h4_1.appendChild(restart)
+  h4_2.appendChild(newGame)
+  div.appendChild(h4_1)
+  div.appendChild(h4_2)
+  container.appendChild(div)
+
   var WIDTH = container.offsetWidth
   var HEIGHT = container.offsetHeight
 
@@ -139,6 +151,9 @@ document.addEventListener('keydown', function(event) {
   } else if (event.key == "i") {
     console.log("i key pressed")
     instructions()
+  } else if (event.key == "r") {
+    board.reset()
+    block.reset()
   } else {
     if (event.key == 'ArrowRight') {
       // console.log("right arrow pressed")
@@ -155,7 +170,7 @@ document.addEventListener('keydown', function(event) {
     }
 
     if (board.didWin()) {
-      winScreen()
+      setTimeout(() => { winScreen() }, 700)
     }
   }
 })
