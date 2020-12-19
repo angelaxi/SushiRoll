@@ -24,10 +24,10 @@ class Block {
         // this.material = new THREE.MeshBasicMaterial( { color: 0xf7f7f2, envMap: cubeTexture } )
 
         THREE.crossOrigin = "";
-        var bmap =  THREE.ImageUtils.loadTexture("textures/rice_texture", {}, function(){});
-        THREE.MeshPhongMaterial({
+        const loader = new THREE.TextureLoader();
+        this.material = new THREE.MeshPhongMaterial({
             color      :  0xf7f7f2,
-            bumpMap    :  bmap,
+            bumpMap    :  loader.load('textures/rice_texture.jpg'),
             bumpScale  :  0.45,
         });
 
