@@ -154,7 +154,8 @@ document.addEventListener('keydown', function(event) {
   } else if (event.key == "r") {
     board.reset()
     block.reset()
-  } else {
+  } else if (event.key == 'ArrowRight' || event.key == 'ArrowLeft' 
+              || event.key == 'ArrowDown' || event.key == 'ArrowUp') {
     if (event.key == 'ArrowRight') {
       // console.log("right arrow pressed")
       block.rotate("right")
@@ -170,6 +171,7 @@ document.addEventListener('keydown', function(event) {
     }
 
     if (board.didWin()) {
+      setTimeout(() => { block.wrap() }, 300)
       setTimeout(() => { winScreen() }, 700)
     }
   }

@@ -55,6 +55,21 @@ class Block {
         this.orientation = this.origOrient
     }
 
+    wrap() {
+        var material = new THREE.MeshLambertMaterial( { color: 0x003b00 } )
+        var geometry = this.createBoxWithRoundedEdges(1.1, 1.8, 1.1, .25, 3)
+        if (this.orientation == "horizontalX") {
+            geometry = this.createBoxWithRoundedEdges(1.8, 1.1, 1.1, .25, 3)
+        } else if (this.orientation == "horizontalZ") {
+            console.log("Z")
+            geometry = this.createBoxWithRoundedEdges(1.1, 1.1, 1.8, .25, 3)
+        }
+        geometry.computeVertexNormals()
+        var wrap = new THREE.Mesh( geometry, material )
+        wrap.position.set(sushi.position.x, sushi.position.y, sushi.position.z)
+        this.scene.add(wrap)
+    }
+
     getTiles(pos, orientation) {
         var tiles = []
         if (orientation == "vertical") {
