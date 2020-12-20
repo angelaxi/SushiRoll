@@ -15,16 +15,6 @@ class Block {
         this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .25, 3)
         this.geometry.computeVertexNormals()
 
-        // var loader = new THREE.CubeTextureLoader()
-        // loader.setCrossOrigin( "" );
-        // loader.setPath( 'https://threejs.org/examples/textures/cube/pisa/' )
-        // var cubeTexture = loader.load( [
-        // 'px.png', 'nx.png',
-        // 'py.png', 'ny.png',
-        // 'pz.png', 'nz.png'
-        // ] );
-        // this.material = new THREE.MeshBasicMaterial( { color: 0xf7f7f2, envMap: cubeTexture } )
-
         // THREE.crossOrigin = "";
         // const loader = new THREE.TextureLoader();
         // this.material = new THREE.MeshPhongMaterial({
@@ -40,8 +30,7 @@ class Block {
         //     map: loader.load('textures/rice.jpg')
         // });
 
-        // comment out before committing
-        // this.material = new THREE.MeshLambertMaterial( { color: 0xfcfcfc } )
+        this.material = new THREE.MeshLambertMaterial( { color: 0xfcfcfc } )
         this.block = new THREE.Mesh( this.geometry, this.material )
         sushi = this.block
         this.scene.add(this.block)
@@ -58,7 +47,7 @@ class Block {
     wrap() {
         var loader = new THREE.TextureLoader()
         var material = new THREE.MeshBasicMaterial({
-            map: loader.load('texture/seaweed.jpg'),
+            map: loader.load('textures/seaweed.jpg'),
         });
         // var material = new THREE.MeshLambertMaterial( { color: 0x01321c } )
         // var geometry = this.createBoxWithRoundedEdges(1.1, 1.8, 1.1, .25, 3)
