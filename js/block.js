@@ -41,7 +41,7 @@ class Block {
         // });
 
         // comment out before committing
-        this.material = new THREE.MeshLambertMaterial( { color: 0xfcfcfc } )
+        // this.material = new THREE.MeshLambertMaterial( { color: 0xfcfcfc } )
         this.block = new THREE.Mesh( this.geometry, this.material )
         sushi = this.block
         this.scene.add(this.block)
@@ -56,13 +56,19 @@ class Block {
     }
 
     wrap() {
-        var material = new THREE.MeshLambertMaterial( { color: 0x003b00 } )
-        var geometry = this.createBoxWithRoundedEdges(1.1, 1.8, 1.1, .25, 3)
+        var loader = new THREE.TextureLoader()
+        var material = new THREE.MeshBasicMaterial({
+            map: loader.load('texture/seaweed.jpg'),
+        });
+        // var material = new THREE.MeshLambertMaterial( { color: 0x01321c } )
+        // var geometry = this.createBoxWithRoundedEdges(1.1, 1.8, 1.1, .25, 3)
+        var geometry = new THREE.BoxGeometry(1.1, 1.8, 1.1)
         if (this.orientation == "horizontalX") {
-            geometry = this.createBoxWithRoundedEdges(1.8, 1.1, 1.1, .25, 3)
+            // geometry = this.createBoxWithRoundedEdges(1.8, 1.1, 1.1, .25, 3)
+            geometry = new THREE.BoxGeometry(1.8, 1.1, 1.1)
         } else if (this.orientation == "horizontalZ") {
-            console.log("Z")
-            geometry = this.createBoxWithRoundedEdges(1.1, 1.1, 1.8, .25, 3)
+            // geometry = this.createBoxWithRoundedEdges(1.1, 1.1, 1.8, .25, 3)
+            geometry = new THREE.BoxGeometry(1.1, 1.1, 1.1)
         }
         geometry.computeVertexNormals()
         var wrap = new THREE.Mesh( geometry, material )

@@ -19,7 +19,8 @@ h1 {
     letter-spacing: 8px;
     text-align: center;
     margin: 0%;
-    padding: 100px;
+    padding-top: 100px;
+    padding-bottom: 20px;
 }
 
 h2 {
@@ -31,7 +32,8 @@ h2 {
     letter-spacing: 5px;
     text-align: center;
     margin: 0%;
-    padding-top: 50px;
+    padding-top: 100px;
+    padding-bottom: 30px;
 }
 
  h3 {
@@ -52,7 +54,7 @@ h4 {
 	font-style: normal;
 	font-weight: 400;
     font-size: 5vh;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
     text-align: left;
     margin: 0%;
     padding-top: 20px;
@@ -69,6 +71,17 @@ h4 {
     text-align: center;
     margin: 0%;
     padding-top: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+span {
+    font-family: 'League-Bold' , sans-serif;
+	color: 	#4d009a;
+	font-style: normal;
+	font-weight: 400;
+    font-size: 5vh;
+    letter-spacing: 5px;
 }
 
 img {

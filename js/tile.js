@@ -7,6 +7,7 @@ class Tile {
         this.tile = new THREE.Mesh(this.geometry, material)
         this.tile.rotation.set(this.rotationX, 0, 0)
         this.tile.name = name
+        this.name = name
         this.geometry.translate(position.x, position.y, position.z)
         this.scene.add(this.tile)
     }
@@ -23,8 +24,6 @@ class Tile {
         if (Math.floor(this.position.x) == Math.floor(position.x) 
             && Math.floor(this.position.y) == Math.floor(position.y)
             && Math.floor(this.position.z) == Math.floor(position.z)) {
-                // console.log("contains tile")
-                // console.log(this.position.x + ", " + this.position.y + ", " + this.position.z)
                 return true
         }
         return false
