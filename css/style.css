@@ -68,11 +68,12 @@ h5 {
 
 span {
     font-family: 'League-Bold' , sans-serif;
-	color: 	#4d009a;
+	color: 	#ffffff;
 	font-style: normal;
 	font-weight: 400;
     font-size: 5vh;
     letter-spacing: 5px;
+    text-shadow: 2px 2px 6px #2e4b99;
 }
 
 img {
