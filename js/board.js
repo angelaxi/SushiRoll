@@ -13,8 +13,8 @@ class Board {
             map: loader.load('textures/rice.jpg'), side: THREE.DoubleSide
         });
         // comment out before committing
-        // this.material = new THREE.MeshLambertMaterial({color: 0x003b00, side: THREE.DoubleSide})
-        // this.specialMaterial = new THREE.MeshLambertMaterial({color: 0xfefec8, side: THREE.DoubleSide})
+        this.material = new THREE.MeshLambertMaterial({color: 0x003b00, side: THREE.DoubleSide})
+        this.specialMaterial = new THREE.MeshLambertMaterial({color: 0xfefec8, side: THREE.DoubleSide})
 
         this.directions = ["forward", "backward", "right", "left"]
         this.vectors = new Map()
@@ -40,7 +40,7 @@ class Board {
             map: loader.load('textures/bamboo_mat.jpg'), side: THREE.DoubleSide
         });
         // comment out before committing
-        // startMaterial = new THREE.MeshLambertMaterial({color: 0xe0ccb1, side: THREE.DoubleSide})
+        startMaterial = new THREE.MeshLambertMaterial({color: 0xe0ccb1, side: THREE.DoubleSide})
         this.numTiles++
         var tile = new Tile(this.scene, this.currPos[0], startMaterial, "tile" + this.numTiles)
         this.tiles.push(tile)

@@ -10,36 +10,33 @@ body {
     padding:0px;
 }
 
-h1 {
-	font-family: 'League-Bold' , sans-serif;
-	color: 	#99ace0;
+h1, h2, h3, h4, h5 {
+    font-family: 'League-Bold' , sans-serif;
+    color: 	#2e4b99;
 	font-style: normal;
+}
+
+h1 {
 	font-weight: 400;
     font-size: 15vh;
     letter-spacing: 8px;
     text-align: center;
     margin: 0%;
     padding-top: 100px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
 }
 
 h2 {
-	font-family: 'League-Bold' , sans-serif;
-	color: 	#99ace0;
-	font-style: normal;
 	font-weight: 400;
     font-size: 5vh;
     letter-spacing: 5px;
     text-align: center;
     margin: 0%;
     padding-top: 100px;
-    padding-bottom: 30px;
+    padding-bottom: 40px;
 }
 
- h3 {
-	font-family: 'League-Bold' , sans-serif;
-	color: 	#99ace0;
-	font-style: normal;
+h3 {
 	font-weight: 400;
     font-size: 5vh;
     letter-spacing: 5px;
@@ -49,9 +46,6 @@ h2 {
 }
 
 h4 {
-	font-family: 'League-Bold' , sans-serif;
-	color: 	#99ace0;
-	font-style: normal;
 	font-weight: 400;
     font-size: 5vh;
     letter-spacing: 3px;
@@ -61,16 +55,13 @@ h4 {
     padding-left: 20px;
 }
 
- h5 {
-	font-family: 'League-Bold' , sans-serif;
-	color: 	#99ace0;
-	font-style: normal;
+h5 {
 	font-weight: 400;
-    font-size: 3vh;
+    font-size: 20px;
     letter-spacing: 5px;
     text-align: center;
     margin: 0%;
-    padding-top: 30px;
+    padding-top: 20px;
     padding-left: 50px;
     padding-right: 50px;
 }
@@ -93,18 +84,35 @@ img {
 
 .overlay {
     position: absolute;
+    background-color: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.blur {
+    background-color: rgba(255, 255, 255, 0.5);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-size: cover;
+    height: 100%;
+}
+
+.home {
+    text-shadow: 2px 2px 3px #ffffff;
 }
 
 #TitleHeader {
     position: relative;
-    /* background-image: url("../textures/background.jpg");
-    background-size: cover; */
-    background: #97d8e7; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left top, #ffdae0, #daf3ff); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom right, #ffdae0, #daf3ff); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom right, #ffdae0, #daf3ff); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to bottom right, #ffdae0, #daf3ff); /* Standard syntax */
+    background-image: url("../textures/sushi-wallpaper.jpg");
+    background-size: cover;
     width: 100%;
+}
+
+canvas {
+    position: absolute;
 }
 
 .headerStyle {

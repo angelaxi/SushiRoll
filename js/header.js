@@ -35,17 +35,17 @@ function startGame() {
   h4_1.appendChild(restart)
   h4_2.appendChild(newGame)
   h4_3.appendChild(diff)
-  div.appendChild(h4_1)
-  div.appendChild(h4_3)
-  div.appendChild(h4_2)
-  container.appendChild(div)
 
   var WIDTH = container.offsetWidth
   var HEIGHT = container.offsetHeight
 
   renderer = new THREE.WebGLRenderer({antialias:true, canvas:canvas, alpha:true})
   renderer.setSize(WIDTH, HEIGHT)
-  container.appendChild(renderer.domElement)
+  div.appendChild(renderer.domElement)
+  div.appendChild(h4_1)
+  div.appendChild(h4_3)
+  div.appendChild(h4_2)
+  container.appendChild(div)
 
   // camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, 20000)
   // camera.position.set(0, 0, 10)
@@ -81,6 +81,8 @@ function animate() {
 
 function instructions() {
   container.innerHTML = ""
+  var div = document.createElement("div")
+  div.className = "blur"
   var h3_1 = document.createElement("H3")
   var h5_1 = document.createElement("H5")
   var h5_2 = document.createElement("H5")
@@ -115,14 +117,16 @@ function instructions() {
   var text8 = document.createTextNode("Press Space to Start")
   h3_3.appendChild(text8)
 
-  container.appendChild(h3_1)
-  container.appendChild(h5_1)
-  container.appendChild(h5_2)
-  container.appendChild(h3_2)
-  container.appendChild(h5_3)
-  container.appendChild(h5_4)
-  container.appendChild(h5_5)
-  container.appendChild(h3_3)
+  div.appendChild(h3_1)
+  div.appendChild(h5_1)
+  div.appendChild(h5_2)
+  div.appendChild(h3_2)
+  div.appendChild(h5_3)
+  div.appendChild(h5_4)
+  div.appendChild(h5_5)
+  div.appendChild(h3_3)
+
+  container.appendChild(div)
 }
 
 function winScreen() {
@@ -144,6 +148,8 @@ function winScreen() {
 
 function difficultyScreen(option) {
   container.innerHTML = ""
+  var div = document.createElement("div")
+  div.className = "blur"
   var h2_1 = document.createElement("H2")
   var h3_1 = document.createElement("H2")
   var h3_2 = document.createElement("H3")
@@ -182,10 +188,11 @@ function difficultyScreen(option) {
   h2_1.appendChild(select)
   h3_1.appendChild(start)
   h5.appendChild(description)
-  container.appendChild(h2_1)
-  container.appendChild(h5)
-  container.appendChild(h3_2)
-  container.appendChild(h3_1)
+  div.appendChild(h2_1)
+  div.appendChild(h5)
+  div.appendChild(h3_2)
+  div.appendChild(h3_1)
+  container.appendChild(div)
 }
 
 function setDifficulty(level) {
