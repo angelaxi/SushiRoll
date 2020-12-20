@@ -50,14 +50,14 @@ class Block {
             map: loader.load('textures/seaweed.jpg'),
         });
         // var material = new THREE.MeshLambertMaterial( { color: 0x01321c } )
-        // var geometry = this.createBoxWithRoundedEdges(1.1, 1.8, 1.1, .25, 3)
-        var geometry = new THREE.BoxGeometry(1.1, 1.8, 1.1)
+        var geometry = this.createBoxWithRoundedEdges(1.1, 1.8, 1.1, .25, 3)
+        // var geometry = new THREE.BoxGeometry(1.1, 1.8, 1.1)
         if (this.orientation == "horizontalX") {
-            // geometry = this.createBoxWithRoundedEdges(1.8, 1.1, 1.1, .25, 3)
-            geometry = new THREE.BoxGeometry(1.8, 1.1, 1.1)
+            geometry = this.createBoxWithRoundedEdges(1.8, 1.1, 1.1, .25, 3)
+            // geometry = new THREE.BoxGeometry(1.8, 1.1, 1.1)
         } else if (this.orientation == "horizontalZ") {
-            // geometry = this.createBoxWithRoundedEdges(1.1, 1.1, 1.8, .25, 3)
-            geometry = new THREE.BoxGeometry(1.1, 1.1, 1.1)
+            geometry = this.createBoxWithRoundedEdges(1.1, 1.1, 1.8, .25, 3)
+            // geometry = new THREE.BoxGeometry(1.1, 1.1, 1.1)
         }
         geometry.computeVertexNormals()
         var wrap = new THREE.Mesh( geometry, material )
