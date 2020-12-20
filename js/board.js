@@ -41,9 +41,10 @@ class Board {
         });
         // comment out before committing
         // startMaterial = new THREE.MeshLambertMaterial({color: 0xe0ccb1, side: THREE.DoubleSide})
-        // this.numTiles++
-        // var tile = new Tile(this.scene, this.currPos[0], startMaterial, "tile" + this.numTiles)
-        // this.tiles.push(tile)
+
+        this.numTiles++
+        var tile = new Tile(this.scene, this.currPos[0], startMaterial, "tile" + this.numTiles)
+        this.tiles.push(tile)
 
         // generate other tiles
         for (var i = 0; i < numTiles; i++) {
