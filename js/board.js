@@ -85,15 +85,11 @@ class Board {
 
             if (!tileCreated) {
                 i--
-            } else {
-                console.log(direction)
             }
         }
 
         this.originalTiles = [... this.tiles]
         this.originalDuplicates = [... this.duplicateTiles]
-        console.log(this.numTiles)
-        console.log(this.tiles)
       }
 
       /**
@@ -122,9 +118,6 @@ class Board {
                     && this.containsPosition(p1) && this.containsPosition(p2)
                     && !this.containsDuplicate(p1) && !this.containsDuplicate(p2)
                     && !this.tiles[0].positionEquals(p1) && !this.tiles[0].positionEquals(p2)) {
-
-            console.log("duplicate 1")
-
             this.numTiles++
             var tile1 = new Tile(this.scene, p1, this.specialMaterial, "tile" + this.numTiles)
             this.numTiles++
@@ -162,9 +155,6 @@ class Board {
             return true
         } else if (this.duplicates && !this.end && this.containsPosition(p1) 
                     && !this.containsDuplicate(p1) && !this.tiles[0].positionEquals(p1)) {
-
-            console.log("duplicate 2")
-
             this.numTiles++
             var tile1 = new Tile(this.scene, p1, this.specialMaterial, "tile" + this.numTiles)
             this.duplicateTiles.push(tile1)
@@ -200,9 +190,6 @@ class Board {
             && this.containsPosition(p1) && this.containsPosition(p2)
             && !this.containsDuplicate(p1) && !this.containsDuplicate(p2)
             && !this.tiles[0].positionEquals(p1) && !this.tiles[0].positionEquals(p2)) {
-
-            console.log("duplicate 3")
-
             this.numTiles++
             var tile1 = new Tile(this.scene, p1, this.specialMaterial, "tile" + this.numTiles)
             this.numTiles++
@@ -260,8 +247,6 @@ class Board {
               t.remove()
               this.duplicateTiles.splice(i, 1)
               i--
-              console.log("1 duplicate tile removed")
-              console.log(t)
   
               if (tilesRemoved == tiles.length) {
                 return
@@ -272,8 +257,7 @@ class Board {
               t.remove()
               this.duplicateTiles.splice(i, 1)
               i--
-              console.log("2 duplicate tiles removed")
-              console.log(t)
+              
               if (tilesRemoved == tiles.length) {
                   return
               }
@@ -288,8 +272,6 @@ class Board {
                   t.remove()
                   this.tiles.splice(i, 1)
                   i--
-                  console.log("1 tile removed")
-                  console.log(t)
       
                   if (tilesRemoved == tiles.length) {
                       return
@@ -300,8 +282,7 @@ class Board {
                   t.remove()
                   this.tiles.splice(i, 1)
                   i--
-                  console.log("2 tiles removed")
-                  console.log(t)
+                  
                   if (tilesRemoved == tiles.length) {
                       return
                   }
@@ -328,7 +309,6 @@ class Board {
       }
 
       reset() {
-          console.log("reset")
           this.tiles = [... this.originalTiles]
           this.duplicateTiles = [... this.originalDuplicates]
 

@@ -196,8 +196,6 @@ function difficultyScreen(option) {
 }
 
 function setDifficulty(level) {
-  console.log("level")
-  console.log(level)
   switch (level) {
     case 1:
       numMoves = 7

@@ -206,8 +206,6 @@ class Block {
             var object = new THREE.Object3D()
             var worldPosition = object.localToWorld(prevPosition)
             var tilesToRemove = this.getTiles(worldPosition, prevOrientation)
-            console.log("tiles to remove:")
-            console.log(tilesToRemove)
             this.board.removeTiles(tilesToRemove)
         } else {
             // bounce back if move is not valid
