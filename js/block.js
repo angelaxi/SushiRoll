@@ -12,7 +12,7 @@ class Block {
         // let subdivisionModifier = new THREE.SubdivisionModifier(5)
         // subdivisionModifier.modify(this.geometry)
 
-        this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .25, 2)
+        this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .2, 2)
         this.geometry.computeVertexNormals()
 
         var loader = new THREE.TextureLoader();
@@ -24,79 +24,9 @@ class Block {
             bumpScale: 0.3,
         } );
 
-        //new ----------
-
-        var loader = new THREE.CubeTextureLoader();
-        loader.setCrossOrigin( "" );
-        // loader.setPath( 'https://threejs.org/examples/textures/cube/pisa/' );
-        // loader.setPath( 'textures/rice.jpg' );
-
-        var cubeTexture = loader.load( 'textures/rice.jpg' );
-
-        var settings = {
-        radius: {value: 0.5}
-        }
-        var boxGeom = new THREE.BoxBufferGeometry(1, 2, 1, 5, 40, 3);
-        var boxMat = new THREE.MeshLambertMaterial({ color: "aqua", envMap: cubeTexture });
-        boxMat.onBeforeCompile = shader => {
-        shader.uniforms.boxSize = {
-            value: new THREE.Vector3(
-            boxGeom.parameters.width,
-            boxGeom.parameters.height,
-            boxGeom.parameters.depth
-            ).multiplyScalar(0.5)
-        };
-        shader.uniforms.radius = settings.radius;
-        shader.vertexShader = `
-        uniform vec3 boxSize;
-        uniform float radius;
-        ` + shader.vertexShader;
-        shader.vertexShader = shader.vertexShader.replace(
-            `#include <begin_vertex>`,
-            `#include <begin_vertex>
-            
-            float maxRadius = clamp(radius, 0.0, min(boxSize.x, min(boxSize.y, boxSize.z)));
-            vec3 signs = sign(position);
-            
-            vec3 subBox = boxSize - vec3(maxRadius);
-            
-            vec3 absPos = abs(transformed); 
-            // xy
-            vec2 sub = absPos.xy - subBox.xy;
-            if (absPos.x > subBox.x && absPos.y > subBox.y && absPos.z <= subBox.z) {
-            transformed.xy = normalize(sub) * maxRadius + subBox.xy;
-            transformed.xy *= signs.xy;
-            }
-            // xz
-            sub = absPos.xz - subBox.xz;
-            if (absPos.x > subBox.x && absPos.z > subBox.z && absPos.y <= subBox.y) {
-            transformed.xz = normalize(sub) * maxRadius + subBox.xz;
-            transformed.xz *= signs.xz;
-            }
-            // yz
-            sub = absPos.yz - subBox.yz;
-            if (absPos.y > subBox.y && absPos.z > subBox.z && absPos.x <= subBox.x) {
-            transformed.yz = normalize(sub) * maxRadius + subBox.yz;
-            transformed.yz *= signs.yz;
-            }
-            
-            // corner
-            if (all(greaterThan(absPos, subBox))){
-            vec3 sub3 = absPos - subBox;
-            transformed = (normalize(sub3) * maxRadius + subBox) * signs;
-            }
-            
-            // re-compute normals for correct shadows and reflections
-            objectNormal = all(equal(position, transformed)) ? normal : normalize(position - transformed); 
-            transformedNormal = normalMatrix * objectNormal; 
-
-            `
-        );
-        };
-
         // this.material = new THREE.MeshLambertMaterial( { color: 0xfcfcfc } )
         // this.block = new THREE.Mesh( this.geometry, this.material )
-        this.block = new THREE.Mesh( boxGeom, boxMat )
+        this.block = new THREE.Mesh( this.geometry, this.material )
         sushi = this.block
         this.scene.add(this.block)
     }
