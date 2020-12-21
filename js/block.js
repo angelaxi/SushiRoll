@@ -16,13 +16,15 @@ class Block {
         this.geometry.computeVertexNormals()
 
         var loader = new THREE.TextureLoader();
-        var map = loader.load( 'textures/rice.jpg' );
+        // var map = loader.load( 'textures/rice.jpg' );
+        var map = loader.load( 'textures/rice_texture.jpg' );
         map.wrapS = THREE.RepeatWrapping;
         map.wrapT = THREE.RepeatWrapping;
 
         this.material = new THREE.MeshPhongMaterial( {
             color: 0xfcfcfc,
-            map: map,
+            displacementMap: map,
+            displacementScale: 0.5,
         } );
 
         // this.material = new THREE.MeshLambertMaterial( { color: 0xfcfcfc } )
