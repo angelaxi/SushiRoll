@@ -135,18 +135,15 @@ function winScreen() {
   container.innerHTML = ""
   var h3_1 = document.createElement("H3")
   var h3_2 = document.createElement("H3")
-  var h3_3 = document.createElement("H3")
   var img = document.createElement("img")
   img.setAttribute("src", "textures/sushi.png")
   var text1 = document.createTextNode("Congrats! You made a sushi!")
   var text2 = document.createTextNode("Press Space for a New Game")
-  var text3 = document.createTextNode("Press D to change the difficulty")
   h3_1.appendChild(text1)
   h3_2.appendChild(text2)
   h3_3.appendChild(text3)
   container.appendChild(h3_1)
   container.appendChild(h3_2)
-  container.appendChild(h3_3)
   container.appendChild(img)
 }
 
