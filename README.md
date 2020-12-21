@@ -22,13 +22,13 @@ In easy mode, there are less squares of seaweed the player has to land on. In me
 
 I used a random walk algorithm to generate each puzzle. Since the shape of sushi rice isn't a cube, I had to keep track of the orientation of the rice block at all times while using the random walk algorithm.
 
-##### Easy Mode:
+#### Easy Mode:
 
 ![](images/easy-level.png)
 
 ![](images/easy-level-2.png)
 
-##### Medium Mode:
+#### Medium Mode:
 
 ![](images/medium-level.png)
 
