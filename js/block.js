@@ -29,13 +29,9 @@ class Block {
         var loader = new THREE.CubeTextureLoader();
         loader.setCrossOrigin( "" );
         // loader.setPath( 'https://threejs.org/examples/textures/cube/pisa/' );
-        loader.setPath( 'textures/rice.jpg' );
+        // loader.setPath( 'textures/rice.jpg' );
 
-        var cubeTexture = loader.load( [
-        'px.png', 'nx.png',
-        'py.png', 'ny.png',
-        'pz.png', 'nz.png'
-        ] );
+        var cubeTexture = loader.load( 'textures/rice.jpg' );
 
         var settings = {
         radius: {value: 0.5}
