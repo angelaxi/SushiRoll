@@ -8,15 +8,11 @@ class Block {
         this.origPos = currPos
         this.currPos = currPos
         this.board = board
-        // this.geometry = new THREE.BoxGeometry(1, 2, 1)
-        // let subdivisionModifier = new THREE.SubdivisionModifier(5)
-        // subdivisionModifier.modify(this.geometry)
 
         this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .25, 10)
         this.geometry.computeVertexNormals()
 
         var loader = new THREE.TextureLoader();
-        // var map = loader.load( 'textures/rice.jpg' );
         var map = loader.load( 'textures/rice.jpg' );
         map.wrapS = THREE.RepeatWrapping;
         map.wrapT = THREE.RepeatWrapping;
@@ -26,8 +22,6 @@ class Block {
             map: map
         } );
 
-        // this.material = new THREE.MeshLambertMaterial( { color: 0xfcfcfc } )
-        // this.block = new THREE.Mesh( this.geometry, this.material )
         this.block = new THREE.Mesh( this.geometry, this.material )
         sushi = this.block
         this.scene.add(this.block)
@@ -43,18 +37,18 @@ class Block {
 
     wrap() {
         var loader = new THREE.TextureLoader()
+        var map = loader.load('textures/seaweed.jpg')
         var material = new THREE.MeshBasicMaterial({
-            map: loader.load('textures/seaweed.jpg'),
+            map: map,
         });
-        // var material = new THREE.MeshLambertMaterial( { color: 0x01321c } )
-        var geometry = this.createBoxWithRoundedEdges(1.1, 1.8, 1.1, .25, 3)
-        // var geometry = new THREE.BoxGeometry(1.1, 1.8, 1.1)
+        map.wrapS = THREE.RepeatWrapping;
+        map.wrapT = THREE.RepeatWrapping;
+
+        var geometry = this.createBoxWithRoundedEdges(1.1, 1.8, 1.1, .25, 5)
         if (this.orientation == "horizontalX") {
-            geometry = this.createBoxWithRoundedEdges(1.8, 1.1, 1.1, .25, 3)
-            // geometry = new THREE.BoxGeometry(1.8, 1.1, 1.1)
+            geometry = this.createBoxWithRoundedEdges(1.8, 1.1, 1.1, .25, 5)
         } else if (this.orientation == "horizontalZ") {
-            geometry = this.createBoxWithRoundedEdges(1.1, 1.1, 1.8, .25, 3)
-            // geometry = new THREE.BoxGeometry(1.1, 1.1, 1.1)
+            geometry = this.createBoxWithRoundedEdges(1.1, 1.1, 1.8, .25, 5)
         }
         geometry.computeVertexNormals()
         var wrap = new THREE.Mesh( geometry, material )
@@ -183,8 +177,6 @@ class Block {
 
         // check if move if valid
         landingTiles = this.getTiles(positionEnd, this.orientation)
-        // console.log("landing tiles")
-        // console.log(landingTiles)
         var validMove = this.board.containsTile(landingTiles[0])
         if (landingTiles.length > 1) {
             validMove = validMove && this.board.containsTile(landingTiles[1])

@@ -16,8 +16,7 @@ body {
 }
 
 h1, h2, h3, h4 {
-    /* font-family: 'Kontora'; */
-    font-family: 'Arial Rounded MT Bold';
+    font-family: 'Kontora';
     color: 	#2e4b99;
 	font-style: normal;
 }
@@ -123,12 +122,4 @@ img {
 
 canvas {
     position: absolute;
-}
-
-.headerStyle {
-    height: 100vh;
-} 
-
-.fillheight {
-    height:100%;
 }

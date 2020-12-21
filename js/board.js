@@ -48,15 +48,6 @@ class Board {
 
         // generate other tiles
         for (var i = 0; i < numTiles; i++) {
-
-            // var numOfMeshes = 0;
-            // this.scene.traverse( function( child ) {
-            //     if( child instanceof THREE.Mesh ) {
-            //         numOfMeshes++;
-            //     }
-            // } );
-            // console.log("number of tiles:" + numOfMeshes)
-
             // choose direction
             var direction = this.directions[Math.floor(Math.random() * this.directions.length)]
 
@@ -119,10 +110,6 @@ class Board {
         var p1 = this.newPosition(direction, this.currPos[0])
         var p2 = this.newPosition(direction, p1)
 
-        // console.log("tile12")
-        // console.log(p1)
-        // console.log(p2)
-
         if (!this.containsPosition(p1) && !this.containsPosition(p2)) {
             this.numTiles++
             var tile1 = new Tile(this.scene, p1, this.material, "tile" + this.numTiles)
@@ -169,9 +156,6 @@ class Board {
             p1 = this.newPosition(direction, this.currPos[1])
         }
 
-        // console.log("tile21")
-        // console.log(p1)
-
         if (!this.containsPosition(p1)) {
             this.numTiles++
             var tile1 = new Tile(this.scene, p1, this.material, "tile" + this.numTiles)
@@ -203,10 +187,6 @@ class Board {
       generateTile22(direction) {
         var p1 = this.newPosition(direction, this.currPos[0])
         var p2 = this.newPosition(direction, this.currPos[1])
-
-        // console.log("tile22")
-        // console.log(p1)
-        // console.log(p2)
 
         if (!this.containsPosition(p1) && !this.containsPosition(p2)) {
             this.numTiles++

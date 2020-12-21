@@ -30,9 +30,6 @@ class Tile {
     }
 
     blockPositionEquals(position) {
-        // console.log("tile vs block position")
-        // console.log(this.position)
-        // console.log(position)
         var tx = (this.position.x > 0) ? Math.floor(this.position.x) : Math.ceil(this.position.x)
         var ty = (this.position.y > 0) ? Math.floor(this.position.y) : Math.ceil(this.position.y)
         var px = (position.x > 0) ? Math.floor(position.x) : Math.ceil(position.x)

@@ -46,7 +46,7 @@ function startGame() {
   div.appendChild(h4_3)
   div.appendChild(h4_2)
   container.appendChild(div)
-  
+
   camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 1000)
   camera.position.set(4, 5, 12)
   camera.lookAt(0, 0, 0)
@@ -237,16 +237,12 @@ document.addEventListener('keydown', function(event) {
   } else if (event.key == 'ArrowRight' || event.key == 'ArrowLeft' 
               || event.key == 'ArrowDown' || event.key == 'ArrowUp') {
     if (event.key == 'ArrowRight') {
-      // console.log("right arrow pressed")
       block.rotate("right")
     } else if (event.key == 'ArrowLeft') {
-      // console.log("left arrow pressed")
       block.rotate("left")
     } else if (event.key == 'ArrowDown') {
-      // console.log("down arrow pressed")
       block.rotate("forward")
     } else if (event.key == 'ArrowUp') {
-      // console.log("up arrow pressed")
       block.rotate("backward")
     }
 
