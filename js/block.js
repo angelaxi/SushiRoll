@@ -12,7 +12,7 @@ class Block {
         // let subdivisionModifier = new THREE.SubdivisionModifier(5)
         // subdivisionModifier.modify(this.geometry)
 
-        this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .2, 2)
+        this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .25, 5)
         this.geometry.computeVertexNormals()
 
         var loader = new THREE.TextureLoader();
@@ -20,8 +20,7 @@ class Block {
 
         this.material = new THREE.MeshPhongMaterial( {
             color: 0xfcfcfc,
-            bumpMap: map,
-            bumpScale: 0.3,
+            map: map,
         } );
 
         // this.material = new THREE.MeshLambertMaterial( { color: 0xfcfcfc } )
