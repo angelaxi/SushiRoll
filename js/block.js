@@ -17,6 +17,8 @@ class Block {
 
         var loader = new THREE.TextureLoader();
         var map = loader.load( 'textures/rice.jpg' );
+        map.wrapS = THREE.RepeatWrapping;
+        map.wrapT = THREE.RepeatWrapping;
 
         this.material = new THREE.MeshPhongMaterial( {
             color: 0xfcfcfc,

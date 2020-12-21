@@ -16,8 +16,8 @@ body {
 }
 
 h1, h2, h3, h4 {
-    /* font-family: 'Kontora'; */
-    font-family: 'Arial Rounded MT Bold';
+    font-family: 'Kontora';
+    /* font-family: 'Arial Rounded MT Bold'; */
     color: 	#2e4b99;
 	font-style: normal;
 }
