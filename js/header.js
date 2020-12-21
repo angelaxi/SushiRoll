@@ -29,12 +29,15 @@ function startGame() {
   var h4_1 = document.createElement("H4")
   var h4_2 = document.createElement("H4")
   var h4_3 = document.createElement("H4")
+  var h4_4 = document.createElement("H4")
   var restart = document.createTextNode("R: Restart")
   var newGame = document.createTextNode("Space: New Game")
   var diff = document.createTextNode("D: Set Difficulty")
+  var instructions = document.createTextNode("I: Instructions")
   h4_1.appendChild(restart)
   h4_2.appendChild(newGame)
   h4_3.appendChild(diff)
+  h4_4.appendChild(instructions)
 
   var WIDTH = container.offsetWidth
   var HEIGHT = container.offsetHeight
@@ -45,6 +48,7 @@ function startGame() {
   div.appendChild(h4_1)
   div.appendChild(h4_3)
   div.appendChild(h4_2)
+  div.appendChild(h4_4)
   container.appendChild(div)
 
   camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 1000)
@@ -136,8 +140,10 @@ function winScreen() {
   img.setAttribute("src", "textures/sushi.png")
   var text1 = document.createTextNode("Congrats! You made a sushi!")
   var text2 = document.createTextNode("Press Space for a New Game")
+  var text3 = document.createTextNode("Press D to change the difficulty")
   h3_1.appendChild(text1)
   h3_2.appendChild(text2)
+  h3_3.appendChild(text3)
   container.appendChild(h3_1)
   container.appendChild(h3_2)
   container.appendChild(h3_3)
