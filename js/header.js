@@ -45,9 +45,9 @@ function startGame() {
   renderer = new THREE.WebGLRenderer({antialias:true, canvas:canvas, alpha:true})
   renderer.setSize(WIDTH, HEIGHT)
   div.appendChild(renderer.domElement)
+  div.appendChild(h4_4)
   div.appendChild(h4_1)
   div.appendChild(h4_3)
-  div.appendChild(h4_4)
   div.appendChild(h4_2)
   container.appendChild(div)
 
