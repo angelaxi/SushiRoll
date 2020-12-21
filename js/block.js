@@ -12,19 +12,18 @@ class Block {
         // let subdivisionModifier = new THREE.SubdivisionModifier(5)
         // subdivisionModifier.modify(this.geometry)
 
-        this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .25, 5)
+        this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .25, 10)
         this.geometry.computeVertexNormals()
 
         var loader = new THREE.TextureLoader();
         // var map = loader.load( 'textures/rice.jpg' );
-        var map = loader.load( 'textures/rice_displacement.png' );
+        var map = loader.load( 'textures/rice.jpg' );
         map.wrapS = THREE.RepeatWrapping;
         map.wrapT = THREE.RepeatWrapping;
 
         this.material = new THREE.MeshPhongMaterial( {
             color: 0xfcfcfc,
-            displacementMap: map,
-            displacementScale: 0.5,
+            map: map
         } );
 
         // this.material = new THREE.MeshLambertMaterial( { color: 0xfcfcfc } )
