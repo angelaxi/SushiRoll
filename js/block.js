@@ -30,7 +30,16 @@ class Block {
         //     map: loader.load('textures/rice.jpg')
         // });
 
-        this.material = new THREE.MeshLambertMaterial( { color: 0xfcfcfc } )
+        var loader = new THREE.TextureLoader();
+        var myDisplacementMap = loader.load( 'textures/rice_displacement.png' );
+
+        this.material = new THREE.MeshPhongMaterial( {
+            color: 0xfcfcfc,
+            displacementMap: myDisplacementMap,
+            displacementScale: 10
+        } );
+
+        // this.material = new THREE.MeshLambertMaterial( { color: 0xfcfcfc } )
         this.block = new THREE.Mesh( this.geometry, this.material )
         sushi = this.block
         this.scene.add(this.block)

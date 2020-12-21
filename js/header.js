@@ -46,9 +46,7 @@ function startGame() {
   div.appendChild(h4_3)
   div.appendChild(h4_2)
   container.appendChild(div)
-
-  // camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, 20000)
-  // camera.position.set(0, 0, 10)
+  
   camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 1000)
   camera.position.set(4, 5, 12)
   camera.lookAt(0, 0, 0)

@@ -11,12 +11,12 @@ body {
 }
 
 @font-face {
-    font-family: 'Lucy-Rounded';
-    src: url(Lucy_Rounded_Files/Lucy_Rounded.woff);
+    font-family: 'Kontora';
+    src: url(Kontora/Kontora\ Medium.otf);
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Lucy-Rounded';
+    font-family: 'Kontora';
     color: 	#2e4b99;
 	font-style: normal;
 }
@@ -38,7 +38,7 @@ h2 {
     text-align: center;
     margin: 0%;
     padding-top: 100px;
-    padding-bottom: 40px;
+    padding-bottom: 50px;
 }
 
 h3 {
