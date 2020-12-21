@@ -16,7 +16,7 @@ class Block {
         this.geometry.computeVertexNormals()
 
         var loader = new THREE.TextureLoader();
-        var map = loader.load( 'textures/rice_displacement.png' );
+        var map = loader.load( 'textures/rice.jpg' );
 
         this.material = new THREE.MeshPhongMaterial( {
             color: 0xfcfcfc,
