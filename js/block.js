@@ -30,13 +30,14 @@ class Block {
         //     map: loader.load('textures/rice.jpg')
         // });
 
+        THREE.crossOrigin = "";
         var loader = new THREE.TextureLoader();
-        var myDisplacementMap = loader.load( 'textures/rice_displacement.png' );
+        var map = loader.load( 'textures/rice_displacement.png' );
 
         this.material = new THREE.MeshPhongMaterial( {
             color: 0xfcfcfc,
-            displacementMap: myDisplacementMap,
-            displacementScale: 10
+            bumpMap: map,
+            bumpScale: 0.5,
         } );
 
         // this.material = new THREE.MeshLambertMaterial( { color: 0xfcfcfc } )
