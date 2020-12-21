@@ -248,7 +248,7 @@ document.addEventListener('keydown', function(event) {
 
     if (board.didWin()) {
       setTimeout(() => { block.wrap() }, 300)
-      // setTimeout(() => { winScreen() }, 700)
+      setTimeout(() => { winScreen() }, 700)
     }
   }
 })
