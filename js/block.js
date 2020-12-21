@@ -8,23 +8,15 @@ class Block {
         this.origPos = currPos
         this.currPos = currPos
         this.board = board
-        // this.geometry = new THREE.BoxGeometry(1, 2, 1)
-        // let subdivisionModifier = new THREE.SubdivisionModifier(5)
-        // subdivisionModifier.modify(this.geometry)
+        this.geometry = new THREE.BoxGeometry(1, 2, 1)
+        let subdivisionModifier = new THREE.SubdivisionModifier(5)
+        subdivisionModifier.modify(this.geometry)
 
-        this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .25, 5)
-        this.geometry.computeVertexNormals()
+        // this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .25, 5)
+        // this.geometry.computeVertexNormals()
 
-        // var loader = new THREE.TextureLoader();
-        // var map = loader.load( 'textures/rice_displacement.png' );
-        const loader = new THREE.CubeTextureLoader();
-        loader.setPath( 'textures/cube/pisa/' );
-
-        const map = loader.load( [
-            'px.png', 'nx.png',
-            'py.png', 'ny.png',
-            'pz.png', 'nz.png'
-        ] );
+        var loader = new THREE.TextureLoader();
+        var map = loader.load( 'textures/rice_displacement.png' );
 
         this.material = new THREE.MeshPhongMaterial( {
             color: 0xfcfcfc,
@@ -194,8 +186,6 @@ class Block {
         if (landingTiles.length > 1) {
             validMove = validMove && this.board.containsTile(landingTiles[1])
         }
-        
-        // console.log(validMove)
 
         if (validMove) {
             var tweenPos = new TWEEN.Tween(position).to(positionEnd, 300);
@@ -244,26 +234,6 @@ class Block {
 
             this.orientation = prevOrientation
         }
-
-        // var tweenPos = new TWEEN.Tween(position).to(positionEnd, 300);
-        // tweenPos.easing(TWEEN.Easing.Quadratic.Out);
-        // tweenPos.start();
-        // tweenPos.onUpdate(function(){
-        //     sushi.position.set(position.x, position.y, position.z);
-        // });
-
-        // var tweenRot = new TWEEN.Tween(rotation).to(rotationEnd, 300);
-        // tweenRot.easing(TWEEN.Easing.Quadratic.Out);
-        // tweenRot.start();
-        // tweenRot.onUpdate(function(){
-        //     sushi.rotation.set(rotation.x, rotation.y, rotation.z);
-        // });
-        // tweenRot.onComplete(function(){ 
-        //     // reset rotation
-        //     sushi.position.set(positionEnd.x, positionEnd.y, positionEnd.z)
-        //     sushi.scale.set(scale.x, scale.y, scale.z)
-        //     sushi.rotation.set(0, 0, 0)
-        // });
     }
 
     createBoxWithRoundedEdges( width, height, depth, radius0, smoothness ) {
