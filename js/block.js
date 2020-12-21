@@ -12,25 +12,9 @@ class Block {
         // let subdivisionModifier = new THREE.SubdivisionModifier(5)
         // subdivisionModifier.modify(this.geometry)
 
-        this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .25, 3)
+        this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .25, 8)
         this.geometry.computeVertexNormals()
 
-        // THREE.crossOrigin = "";
-        // const loader = new THREE.TextureLoader();
-        // this.material = new THREE.MeshPhongMaterial({
-        //     color      :  0xf7f7f2,
-        //     bumpMap    :  loader.load('textures/rice_texture.jpg'),
-        //     bumpScale  :  0.45,
-        // });
-
-
-        // const loader = new THREE.TextureLoader();
-        // this.material = new THREE.MeshBasicMaterial({
-        //     color: 0xf7f7f2,
-        //     map: loader.load('textures/rice.jpg')
-        // });
-
-        THREE.crossOrigin = "";
         var loader = new THREE.TextureLoader();
         var map = loader.load( 'textures/rice_displacement.png' );
 
