@@ -17,7 +17,7 @@ class Block {
 
         var loader = new THREE.TextureLoader();
         // var map = loader.load( 'textures/rice.jpg' );
-        var map = loader.load( 'textures/rice_texture.jpg' );
+        var map = loader.load( 'textures/rice_displacement.png' );
         map.wrapS = THREE.RepeatWrapping;
         map.wrapT = THREE.RepeatWrapping;
 
