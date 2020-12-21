@@ -141,7 +141,6 @@ function winScreen() {
   var text2 = document.createTextNode("Press Space for a New Game")
   h3_1.appendChild(text1)
   h3_2.appendChild(text2)
-  h3_3.appendChild(text3)
   container.appendChild(h3_1)
   container.appendChild(h3_2)
   container.appendChild(img)
