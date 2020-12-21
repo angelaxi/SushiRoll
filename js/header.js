@@ -47,8 +47,8 @@ function startGame() {
   div.appendChild(renderer.domElement)
   div.appendChild(h4_1)
   div.appendChild(h4_3)
-  div.appendChild(h4_2)
   div.appendChild(h4_4)
+  div.appendChild(h4_2)
   container.appendChild(div)
 
   camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 1000)
