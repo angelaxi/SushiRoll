@@ -8,12 +8,12 @@ class Block {
         this.origPos = currPos
         this.currPos = currPos
         this.board = board
-        this.geometry = new THREE.BoxGeometry(1, 2, 1)
-        let subdivisionModifier = new THREE.SubdivisionModifier(5)
-        subdivisionModifier.modify(this.geometry)
+        // this.geometry = new THREE.BoxGeometry(1, 2, 1)
+        // let subdivisionModifier = new THREE.SubdivisionModifier(5)
+        // subdivisionModifier.modify(this.geometry)
 
-        // this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .25, 5)
-        // this.geometry.computeVertexNormals()
+        this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .25, 2)
+        this.geometry.computeVertexNormals()
 
         var loader = new THREE.TextureLoader();
         var map = loader.load( 'textures/rice_displacement.png' );
@@ -21,7 +21,7 @@ class Block {
         this.material = new THREE.MeshPhongMaterial( {
             color: 0xfcfcfc,
             bumpMap: map,
-            bumpScale: 0.5,
+            bumpScale: 0.3,
         } );
 
         // this.material = new THREE.MeshLambertMaterial( { color: 0xfcfcfc } )
