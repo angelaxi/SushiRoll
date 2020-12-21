@@ -12,11 +12,19 @@ class Block {
         // let subdivisionModifier = new THREE.SubdivisionModifier(5)
         // subdivisionModifier.modify(this.geometry)
 
-        this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .25, 8)
+        this.geometry = this.createBoxWithRoundedEdges(1, 2, 1, .25, 5)
         this.geometry.computeVertexNormals()
 
-        var loader = new THREE.TextureLoader();
-        var map = loader.load( 'textures/rice_displacement.png' );
+        // var loader = new THREE.TextureLoader();
+        // var map = loader.load( 'textures/rice_displacement.png' );
+        const loader = new THREE.CubeTextureLoader();
+        loader.setPath( 'textures/cube/pisa/' );
+
+        const map = loader.load( [
+            'px.png', 'nx.png',
+            'py.png', 'ny.png',
+            'pz.png', 'nz.png'
+        ] );
 
         this.material = new THREE.MeshPhongMaterial( {
             color: 0xfcfcfc,
@@ -267,7 +275,7 @@ class Block {
         shape.absarc( width - radius * 2, height -  radius * 2, eps, Math.PI / 2, 0, true );
         shape.absarc( width - radius * 2, eps, eps, 0, -Math.PI / 2, true );
         let geometry = new THREE.ExtrudeBufferGeometry( shape, {
-          depth: depth - radius0 * 2,
+          amount: depth - radius0 * 2,
           bevelEnabled: true,
           bevelSegments: smoothness * 2,
           steps: 1,
@@ -279,5 +287,5 @@ class Block {
         geometry.center();
         
         return geometry;
-    }
+      }
 }
