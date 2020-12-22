@@ -9,6 +9,7 @@ var block
 var numMoves
 var duplicates
 var difficulty
+var canMove
 
 init()
 
@@ -17,6 +18,7 @@ function init() {
 	pickingTexture.texture.minFilter = THREE.LinearFilter
   container = document.getElementById("TitleHeader")
   difficulty = 1
+  canMove = true
 }
 
 function startGame() {
@@ -234,8 +236,9 @@ document.addEventListener('keydown', function(event) {
   } else if (event.key == "3") {
     difficulty = 3
     difficultyScreen(3)
-  } else if (event.key == 'ArrowRight' || event.key == 'ArrowLeft' 
-              || event.key == 'ArrowDown' || event.key == 'ArrowUp') {
+  } else if (canMove && (event.key == 'ArrowRight' || event.key == 'ArrowLeft' 
+              || event.key == 'ArrowDown' || event.key == 'ArrowUp')) {
+    canMove = false
     if (event.key == 'ArrowRight') {
       block.rotate("right")
     } else if (event.key == 'ArrowLeft') {
@@ -245,6 +248,7 @@ document.addEventListener('keydown', function(event) {
     } else if (event.key == 'ArrowUp') {
       block.rotate("backward")
     }
+    setTimeout(() => { canMove = true }, 300)
 
     if (board.didWin()) {
       setTimeout(() => { block.wrap() }, 300)
